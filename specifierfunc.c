@@ -22,7 +22,7 @@ void prints_string(va_list arg)
 
 void prints_character(va_list arg)
 {
-	char value = va_arg(arg, char);
+	char value = va_arg(arg, int);
 	write(1, &value, sizeof(char));
 }
 
