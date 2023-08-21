@@ -9,7 +9,7 @@
 
 int _printf(const char *format, ...)
 {
-	int i = 0; found = 0;
+	int i = 0, found = 0;
 	va_list string_z;
 	va_start(string_z, format);
 	while(format[i] != '\0' && format != NULL)

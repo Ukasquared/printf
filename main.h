@@ -7,6 +7,10 @@
 int _strlen(char *);
 int _strcmp(char *, char *);
 int _printf(const char *format, ...);
+void (*get_spec(char c))(va_list arg);
+void prints_string(va_list arg);
+void prints_character(va_list arg);
+void prints_integer(va_list arg);
 
 /**
 * struct _printf - converts according to conversio specifier
@@ -22,6 +26,6 @@ struct _printf {
 * conversion - modified struct print_f
 */
 
-typedef struct _printf conversion	
+typedef struct _printf conversion;
 
 #endif
