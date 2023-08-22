@@ -22,5 +22,5 @@ int (*get_spec(char c))(va_list arg)
 			return (specifier[i].va_arg_func);
 		i++;
 	}
-	return (0);
+	return (NULL);
 }

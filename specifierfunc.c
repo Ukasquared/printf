@@ -12,6 +12,8 @@ int prints_string(va_list arg)
 	int len_byte;
 	char *value = va_arg(arg, char *);
 
+	if (value == NULL)
+	value = "(null)";
 	len_byte = _strlen(value) * sizeof(char);
 	return (write(1, value, len_byte));
 }
@@ -27,7 +29,7 @@ int prints_character(va_list arg)
 {
 	char value = va_arg(arg, int);
 
-	return (write(1, &value, sizeof(char)));
+	return (write(1, &value, 1));
 }
 
 /**

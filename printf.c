@@ -13,7 +13,9 @@ int _printf(const char *format, ...)
 	va_list string_z;
 
 	va_start(string_z, format);
-	while (*format != '\0' && format != NULL)
+	if (!format || (format[0] == '%' && !format[1]))
+		return (-1);
+	while (*format != '\0')
 	{
 		len++;
 		if (*format == '%')
@@ -39,3 +41,4 @@ int _printf(const char *format, ...)
 	va_end(string_z);
 	return (len);
 }
+	

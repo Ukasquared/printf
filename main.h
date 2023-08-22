@@ -3,6 +3,7 @@
 
 #include <stdarg.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 int _strlen(char *);
 int _strcmp(char *, char *);
