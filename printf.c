@@ -9,26 +9,33 @@
 
 int _printf(const char *format, ...)
 {
-	int i = 0, found = 0;
+	int len = 0, found = 0, percent = 0;
 	va_list string_z;
+
 	va_start(string_z, format);
-	while(format[i] != '\0' && format != NULL)
+	while (*format != '\0' && format != NULL)
 	{
-		char c = format[i];
-		if (c != '%')
-			write(1, &c, sizeof(char));
-		else if (c == '%')
+		len++;
+		if (*format == '%')
 		{
+			percent = 1;
+			format++;
 			found = 1;
-			continue;
+			if (found == 1 && get_spec(*format))
+			{
+				(get_spec(*format))(string_z);
+				found = 0;
+			}
+			else if (percent == 1 && *format == '%')
+			{
+				write(1, format, sizeof(char));
+				percent = 0;
+			}
 		}
-		if (found == 1 && c == '%')
-			write(1, &c, sizeof(char));
-		else if (found == 1 && get_spec(c))
-			(*get_spec(c))(string_z);
-		found = 0;
-		i++;
+		else
+			write(1, format, sizeof(char));
+		format++;
 	}
-	i--;
-	return (i);
+	va_end(string_z);
+	return (len);
 }
