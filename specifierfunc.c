@@ -49,13 +49,42 @@ int prints_character(va_list arg)
 
 int prints_integer(va_list arg)
 {
-	char str[100];
-	int len_bytes;
+	int len_bytes = 0;
 	int value = va_arg(arg, int);
-	char *string_int = _itoa(value, str, 10);
+	int base;
 
-	len_bytes = _strlen(string_int);
-	return (write(1, string_int, len_bytes));
+	if (value == 0)
+	{
+		_putchar('0');
+		len_bytes++;
+		return (len_bytes);
+	}
+	if (value == INT_MIN)
+	{
+		char *int_eger = "-2147483648";
+		int i;
+
+		for (i = 0; int_eger[i] != '\0'; i++)
+			len_bytes += _putchar(int_eger[i]);
+		return (len_bytes);
+	}
+	if (value < 0)
+	{
+		_putchar('-');
+		len_bytes++;
+		value = -value;
+	}
+	base = 1;
+	while ((value / base) >= 10)
+		base *= 10;
+	while (base != 0)
+	{
+		_putchar('0' + value / base);
+		value %= base;
+		base /= 10;
+		len_bytes++;
+	}
+	return (len_bytes);
 }
 
 
@@ -90,5 +119,3 @@ int print_from_to(char *start, char *stop)
 	return (len);
 
 }
-
-
