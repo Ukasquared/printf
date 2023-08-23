@@ -7,15 +7,21 @@
 * Return: bytes of character
 */
 
+
 int prints_string(va_list arg)
 {
-	int len_byte;
-	char *value = va_arg(arg, char *);
+	char *string = va_arg(arg, char *);
+	int len = 0, i;
 
-	if (value == NULL)
-	value = "(null)";
-	len_byte = _strlen(value) * sizeof(char);
-	return (write(1, value, len_byte));
+	if (string == NULL)
+		string = "(null)";
+
+	for (i = 0; string[i] != '\0'; i++)
+	{
+		len += _putchar(string[i]);
+	}
+
+	return (len);
 }
 
 /**
@@ -27,9 +33,11 @@ int prints_string(va_list arg)
 
 int prints_character(va_list arg)
 {
-	char value = va_arg(arg, int);
+	int value = va_arg(arg, int);
+	int count = 0;
 
-	return (write(1, &value, 1));
+	count += _putchar(value);
+	return (0);
 }
 
 /**
@@ -49,3 +57,38 @@ int prints_integer(va_list arg)
 	len_bytes = _strlen(string_int);
 	return (write(1, string_int, len_bytes));
 }
+
+
+/**
+ * prints_percent - Prints percentage sign
+ * @arg: Pointer variable
+ * Return: Number of byte
+ *
+ */
+
+int prints_percent(va_list arg)
+{
+	(void)arg;
+	return (_putchar('%'));
+}
+
+/**
+ * print_from_to - pritns from beginning to va_end
+ * @start: starting Point
+ * @stop: Finish online
+ * Return: Number of bytes
+ */
+
+int print_from_to(char *start, char *stop)
+{	int len = 0;
+
+	while (start <= stop)
+	{	len += _putchar(*start);
+		start++;
+	}
+
+	return (len);
+
+}
+
+
