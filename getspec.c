@@ -6,7 +6,7 @@
 * Return: pointer to function
 */
 
-int (*get_spec(char *c))(va_list arg)
+int (*get_spec(char *c))(va_list)
 {
 	conversion specifier[] = {
 		{"i", prints_integer},
@@ -40,5 +40,5 @@ int get_fmt_func(char *s, va_list arg)
 
 	if (f)
 		return (f(arg));
-	return (0);
+	return (-1);
 }

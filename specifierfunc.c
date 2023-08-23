@@ -37,7 +37,7 @@ int prints_character(va_list arg)
 	int count = 0;
 
 	count += _putchar(value);
-	return (0);
+	return (count);
 }
 
 /**
